@@ -5,6 +5,7 @@ import {
   HttpException,
   HttpStatus,
   Param,
+  ParseIntPipe,
   Post,
   Query,
 } from '@nestjs/common';
@@ -43,7 +44,7 @@ export class CatsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number): string {
+  findOne(@Param('id', ParseIntPipe) id: number): string {
     return `This action returns a #${id} cat`;
   }
 }
