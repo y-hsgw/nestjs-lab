@@ -11,7 +11,7 @@ import { CatsModule } from './cats/cat.module';
 import { LoggerMiddleware } from './logger.middleware';
 
 @Module({
-  imports: [CatsModule, ConfigModule.forRoot()],
+  imports: [ConfigModule.forRoot(), CatsModule],
   controllers: [AppController],
   providers: [AppService],
 })
