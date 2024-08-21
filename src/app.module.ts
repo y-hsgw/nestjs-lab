@@ -4,13 +4,14 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cat.module';
 import { LoggerMiddleware } from './logger.middleware';
 
 @Module({
-  imports: [CatsModule],
+  imports: [CatsModule, ConfigModule.forRoot()],
   controllers: [AppController],
   providers: [AppService],
 })
