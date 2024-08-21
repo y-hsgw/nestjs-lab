@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as mysql2 from 'mysql2/promise';
+import { User } from './interfaces/user.interface';
 
 @Injectable()
 export class UsersRepository {
@@ -22,5 +23,12 @@ export class UsersRepository {
     const [results] = await this.#connection.query('SELECT * FROM users');
     console.log(results);
     return results;
+  }
+
+  async create(user: Omit<User, 'id'>) {
+    const [results] = await this.#connection.query(
+      `INSERT INTO users (name) VALUES ('${user.name}')`,
+    );
+    console.log(results);
   }
 }

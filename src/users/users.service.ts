@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UsersRepository } from './users.repository';
+import { User } from './interfaces/user.interface';
 
 @Injectable()
 export class UsersService {
@@ -7,5 +8,9 @@ export class UsersService {
 
   async findAll() {
     return await this.userRepository.find();
+  }
+
+  async create(user: Omit<User, 'id'>) {
+    return await this.userRepository.create(user);
   }
 }
