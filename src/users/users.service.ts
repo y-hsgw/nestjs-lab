@@ -11,6 +11,10 @@ export class UsersService {
   }
 
   async create(user: Omit<User, 'id'>) {
-    return await this.userRepository.create(user);
+    await this.userRepository.create(user);
+  }
+
+  async update(user: User) {
+    await this.userRepository.update(user);
   }
 }

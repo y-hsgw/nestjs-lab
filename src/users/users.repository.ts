@@ -31,4 +31,11 @@ export class UsersRepository {
     );
     console.log(results);
   }
+
+  async update(user: User) {
+    const [results] = await this.#connection.query(
+      `UPDATE users SET name = '${user.name}' WHERE id = ${user.id}`,
+    );
+    console.log(results);
+  }
 }
