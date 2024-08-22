@@ -38,4 +38,11 @@ export class UsersRepository {
     );
     console.log(results);
   }
+
+  async delete(userId: User['id']) {
+    const [results] = await this.#connection.query(
+      `DELETE FROM users WHERE id = ${userId}`,
+    );
+    console.log(results);
+  }
 }

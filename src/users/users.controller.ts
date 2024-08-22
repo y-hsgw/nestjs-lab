@@ -1,8 +1,11 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpStatus,
+  Param,
+  ParseIntPipe,
   Patch,
   Post,
   Res,
@@ -29,6 +32,12 @@ export class UsersController {
   @Patch()
   async update(@Body() updateUserDto: UpdateUserDto, @Res() res: Response) {
     await this.usersService.update(updateUserDto);
+    res.status(HttpStatus.NO_CONTENT).json();
+  }
+
+  @Delete(':id')
+  async delete(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
+    await this.usersService.delete(id);
     res.status(HttpStatus.NO_CONTENT).json();
   }
 }
