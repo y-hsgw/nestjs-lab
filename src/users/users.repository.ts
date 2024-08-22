@@ -4,13 +4,11 @@ import { User } from './interfaces/user.interface';
 
 @Injectable()
 export class UsersRepository {
-  #connection: Connection;
+  #connection!: Connection;
 
-  constructor() {
-    this.#build();
-  }
+  constructor() {}
 
-  async #build() {
+  async init() {
     this.#connection = await mysql2.createConnection({
       host: 'localhost',
       user: process.env.MYSQL_USER,

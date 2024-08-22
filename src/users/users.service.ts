@@ -6,6 +6,10 @@ import { User } from './interfaces/user.interface';
 export class UsersService {
   constructor(private readonly userRepository: UsersRepository) {}
 
+  async onModuleInit() {
+    await this.userRepository.init();
+  }
+
   async findAll() {
     return await this.userRepository.find();
   }
