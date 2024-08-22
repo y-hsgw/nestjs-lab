@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import * as mysql2 from 'mysql2/promise';
+import mysql2, { Connection } from 'mysql2/promise';
 import { User } from './interfaces/user.interface';
 
 @Injectable()
 export class UsersRepository {
-  #connection: mysql2.Connection;
+  #connection: Connection;
 
   constructor() {
     this.#build();
