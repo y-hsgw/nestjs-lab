@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { UsersRepository } from './users.repository';
 import { User } from './interfaces/user.interface';
 
 @Injectable()
-export class UsersService {
+export class UsersService implements OnModuleInit {
   constructor(private readonly userRepository: UsersRepository) {}
 
   async onModuleInit() {
