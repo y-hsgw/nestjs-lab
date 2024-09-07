@@ -1,15 +1,9 @@
-import {
-  Args,
-  Int,
-  Parent,
-  Query,
-  ResolveField,
-  Resolver,
-} from '@nestjs/graphql';
+import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 import { Author } from './models/author.model.js';
 import { AuthorsService } from './authors.service.js';
 import { PostsService } from '../post/posts.service.js';
 import { Post } from '../post/models/post.model.js';
+import { GetAuthorArgs } from './dto/get-author-args.js';
 
 @Resolver(() => Author)
 export class AuthorsResolver {
@@ -19,7 +13,7 @@ export class AuthorsResolver {
   ) {}
 
   @Query(() => Author, { name: 'author', description: '著者' })
-  getAuthor(@Args('id', { type: () => Int }) id: number) {
+  getAuthor(@Args() { id }: GetAuthorArgs) {
     return this.authorsService.findOneById(id);
   }
 

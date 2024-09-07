@@ -19,5 +19,5 @@ type Author {
 
 type Query {
   """著者"""
-  author(id: Int!): Author!
+  author(offset: Int! = 0, limit: Int! = 10, id: Int!): Author!
 }
