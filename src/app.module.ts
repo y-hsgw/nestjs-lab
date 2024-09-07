@@ -5,14 +5,14 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { CatsModule } from './cats/cat.module';
-import { LoggerMiddleware } from './logger.middleware';
-import { UsersModule } from './users/users.module';
+import { AppController } from './app.controller.js';
+import { AppService } from './app.service.js';
+import { CatsModule } from './cats/cat.module.js';
+import { LoggerMiddleware } from './logger.middleware.js';
+import { UsersModule } from './users/users.module.js';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { AuthorsModule } from './authors/authors.module';
+import { AuthorsModule } from './authors/authors.module.js';
 import path from 'path';
 
 @Module({

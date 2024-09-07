@@ -6,9 +6,9 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { Author } from './models/author.model';
-import { AuthorsService } from './authors.service';
-import { PostsService } from 'src/post/posts.service';
+import { Author } from './models/author.model.js';
+import { AuthorsService } from './authors.service.js';
+import { PostsService } from '../post/posts.service.js';
 
 @Resolver(() => Author)
 export class AuthorsResolver {

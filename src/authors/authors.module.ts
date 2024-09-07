@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { AuthorsService } from './authors.service';
-import { AuthorsResolver } from './authors.resolver';
-import { PostsModule } from 'src/post/posts.module';
+import { AuthorsService } from './authors.service.js';
+import { AuthorsResolver } from './authors.resolver.js';
+import { PostsModule } from '../post/posts.module.js';
 
 @Module({
   imports: [PostsModule],

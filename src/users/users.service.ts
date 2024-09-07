@@ -1,6 +1,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { UsersRepository } from './users.repository';
-import { User } from './interfaces/user.interface';
+import { UsersRepository } from './users.repository.js';
+import { User } from './interfaces/user.interface.js';
 
 @Injectable()
 export class UsersService implements OnModuleInit {
