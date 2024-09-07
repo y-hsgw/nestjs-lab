@@ -19,5 +19,9 @@ type Author {
 
 type Query {
   """著者"""
-  author(offset: Int! = 0, limit: Int! = 10, id: Int!): Author!
+  author(offset: Int! = 0, limit: Int! = 10, id: Int!): Author
+}
+
+type Mutation {
+  upvotePost(postId: Int!): Post
 }

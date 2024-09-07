@@ -1,4 +1,12 @@
-import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Int,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
 import { Author } from './models/author.model.js';
 import { AuthorsService } from './authors.service.js';
 import { PostsService } from '../post/posts.service.js';
@@ -12,7 +20,7 @@ export class AuthorsResolver {
     private postsService: PostsService,
   ) {}
 
-  @Query(() => Author, { name: 'author', description: '著者' })
+  @Query(() => Author, { name: 'author', description: '著者', nullable: true })
   getAuthor(@Args() { id }: GetAuthorArgs) {
     return this.authorsService.findOneById(id);
   }
@@ -21,5 +29,11 @@ export class AuthorsResolver {
   getPosts(@Parent() author: Author) {
     const { id } = author;
     return this.postsService.findAll({ authorId: id });
+  }
+
+  @Mutation(() => Post, { nullable: true })
+  upvotePost(@Args({ name: 'postId', type: () => Int }) postId: number) {
+    this.postsService.upvoteById({ id: postId });
+    return this.postsService.findOne(postId);
   }
 }
