@@ -8,7 +8,7 @@ export class PostsService {
     { id: 2, title: 'example' },
   ];
 
-  async findAll(option?: { authorId: number }) {
+  findAll(option?: { authorId: number }) {
     return this.#posts.filter((post) => post.id === option?.authorId);
   }
 }

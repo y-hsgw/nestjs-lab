@@ -18,12 +18,12 @@ export class CatsController {
   constructor(private catsService: CatsService) {}
 
   @Post()
-  async create(@Body() createCatDto: CreateCatDto) {
+  create(@Body() createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }
 
   @Get()
-  async findAll(@Query() query: { id: string }): Promise<Cat[]> {
+  findAll(@Query() query: { id: string }): Cat[] {
     try {
       if (query.id === '10') {
         throw new Error('IDが10はありえません。');

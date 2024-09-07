@@ -7,7 +7,7 @@ export class AuthorsService {
     { id: 2, firstName: 'matsunagane', lastName: 'yuto' },
   ];
 
-  async findOneById(id: number) {
+  findOneById(id: number) {
     return this.#authors.find((author) => author.id === id);
   }
 }
