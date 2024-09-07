@@ -6,8 +6,6 @@ import { User } from './interfaces/user.interface.js';
 export class UsersRepository {
   #connection!: Connection;
 
-  constructor() {}
-
   async init() {
     this.#connection = await mysql2.createConnection({
       host: 'localhost',

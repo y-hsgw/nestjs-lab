@@ -8,8 +8,6 @@ export class PostsService {
     { id: 2, title: 'example' },
   ];
 
-  constructor() {}
-
   async findAll(option?: { authorId: number }) {
     return this.#posts.filter((post) => post.id === option?.authorId);
   }
