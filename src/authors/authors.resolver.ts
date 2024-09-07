@@ -18,12 +18,12 @@ export class AuthorsResolver {
     private postsService: PostsService,
   ) {}
 
-  @Query(() => Author, { name: 'author' })
+  @Query(() => Author, { name: 'author', description: '著者' })
   getAuthor(@Args('id', { type: () => Int }) id: number) {
     return this.authorsService.findOneById(id);
   }
 
-  @ResolveField('posts', () => [Post])
+  @ResolveField('posts', () => [Post], { description: '投稿リスト' })
   getPosts(@Parent() author: Author) {
     const { id } = author;
     return this.postsService.findAll({ authorId: id });

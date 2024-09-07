@@ -12,9 +12,12 @@ type Author {
   id: Int!
   firstName: String
   lastName: String
+
+  """投稿リスト"""
   posts: [Post!]!
 }
 
 type Query {
+  """著者"""
   author(id: Int!): Author!
 }
