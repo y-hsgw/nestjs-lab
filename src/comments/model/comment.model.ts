@@ -9,5 +9,5 @@ export class Comment {
   postId: number;
 
   @Field()
-  text: string;
+  content: string;
 }
