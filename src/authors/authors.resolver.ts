@@ -6,12 +6,17 @@ import {
   Query,
   ResolveField,
   Resolver,
+  Subscription,
 } from '@nestjs/graphql';
 import { Author } from './models/author.model.js';
 import { AuthorsService } from './authors.service.js';
 import { PostsService } from '../post/posts.service.js';
 import { Post } from '../post/models/post.model.js';
 import { GetAuthorArgs } from './dto/get-author-args.js';
+import { PubSub } from 'graphql-subscriptions';
+import { Comment } from '../comments/model/comment.model.js';
+
+const pubSub = new PubSub();
 
 @Resolver(() => Author)
 export class AuthorsResolver {
@@ -35,5 +40,10 @@ export class AuthorsResolver {
   upvotePost(@Args({ name: 'postId', type: () => Int }) postId: number) {
     this.postsService.upvoteById({ id: postId });
     return this.postsService.findOne(postId);
+  }
+
+  @Subscription(() => Comment)
+  commentAdded() {
+    return pubSub.asyncIterator('commentAdded');
   }
 }

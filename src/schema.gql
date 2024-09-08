@@ -17,6 +17,12 @@ type Author {
   posts: [Post!]!
 }
 
+type Comment {
+  id: Int!
+  postId: Int!
+  text: String!
+}
+
 type Query {
   """著者"""
   author(offset: Int! = 0, limit: Int! = 10, id: Int!): Author
@@ -24,4 +30,8 @@ type Query {
 
 type Mutation {
   upvotePost(postId: Int!): Post
+}
+
+type Subscription {
+  commentAdded: Comment!
 }
