@@ -20,7 +20,7 @@ type Author {
 type Comment {
   id: Int!
   postId: Int!
-  text: String!
+  content: String!
 }
 
 type Query {
@@ -29,7 +29,12 @@ type Query {
 }
 
 type Mutation {
+  addComment(postId: Int!, comment: CommentInput!): Post!
   upvotePost(postId: Int!): Post
+}
+
+input CommentInput {
+  content: String!
 }
 
 type Subscription {

@@ -14,7 +14,9 @@ import { PostsService } from '../post/posts.service.js';
 import { Post } from '../post/models/post.model.js';
 import { GetAuthorArgs } from './dto/get-author-args.js';
 import { PubSub } from 'graphql-subscriptions';
+import { CommentsService } from '../comments/comments.service.js';
 import { Comment } from '../comments/model/comment.model.js';
+import { CommentInput } from './dto/comment.input.js';
 
 const pubSub = new PubSub();
 
@@ -23,6 +25,7 @@ export class AuthorsResolver {
   constructor(
     private authorsService: AuthorsService,
     private postsService: PostsService,
+    private commentsService: CommentsService,
   ) {}
 
   @Query(() => Author, { name: 'author', description: '著者', nullable: true })
@@ -34,6 +37,19 @@ export class AuthorsResolver {
   getPosts(@Parent() author: Author) {
     const { id } = author;
     return this.postsService.findAll({ authorId: id });
+  }
+
+  @Mutation(() => Post)
+  async addComment(
+    @Args('postId', { type: () => Int }) postId: number,
+    @Args('comment') comment: CommentInput,
+  ) {
+    const newComment = this.commentsService.addComment({
+      postId,
+      content: comment.content,
+    });
+    await pubSub.publish('commentAdded', { commentAdded: newComment });
+    return newComment;
   }
 
   @Mutation(() => Post, { nullable: true })
