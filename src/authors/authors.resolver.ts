@@ -39,7 +39,7 @@ export class AuthorsResolver {
     return this.postsService.findAll({ authorId: id });
   }
 
-  @Mutation(() => Post)
+  @Mutation(() => Comment)
   async addComment(
     @Args('postId', { type: () => Int }) postId: number,
     @Args('comment') comment: CommentInput,

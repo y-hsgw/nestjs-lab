@@ -29,7 +29,7 @@ type Query {
 }
 
 type Mutation {
-  addComment(postId: Int!, comment: CommentInput!): Post!
+  addComment(postId: Int!, comment: CommentInput!): Comment!
   upvotePost(postId: Int!): Post
 }
 
