@@ -10,23 +10,9 @@ import { AppService } from './app.service.js';
 import { CatsModule } from './cats/cat.module.js';
 import { LoggerMiddleware } from './logger.middleware.js';
 import { UsersModule } from './users/users.module.js';
-import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { AuthorsModule } from './authors/authors.module.js';
-import path from 'path';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot(),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: path.join(process.cwd(), 'src/schema.gql'),
-      installSubscriptionHandlers: true,
-    }),
-    CatsModule,
-    UsersModule,
-    AuthorsModule,
-  ],
+  imports: [ConfigModule.forRoot(), CatsModule, UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
