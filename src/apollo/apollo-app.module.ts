@@ -1,9 +1,4 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
@@ -21,8 +16,4 @@ import path from 'path';
     AuthorsModule,
   ],
 })
-export class ApolloAppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply().forRoutes({ path: 'graphql', method: RequestMethod.POST });
-  }
-}
+export class ApolloAppModule {}
