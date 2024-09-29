@@ -11,6 +11,7 @@ import path from 'path';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: path.join(process.cwd(), 'src/graphql/apollo/schema.gql'),
+      sortSchema: true,
       installSubscriptionHandlers: true,
       playground: true,
     }),

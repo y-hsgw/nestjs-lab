@@ -2,15 +2,9 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Post {
-  id: Int!
-  title: String!
-  votes: Int
-}
-
 type Author {
-  id: Int!
   firstName: String
+  id: Int!
   lastName: String
 
   """投稿リスト"""
@@ -18,23 +12,29 @@ type Author {
 }
 
 type Comment {
+  content: String!
   id: Int!
   postId: Int!
-  content: String!
-}
-
-type Query {
-  """著者"""
-  author(offset: Int! = 0, limit: Int! = 10, id: Int!): Author
-}
-
-type Mutation {
-  addComment(postId: Int!, comment: CommentInput!): Comment!
-  upvotePost(postId: Int!): Post
 }
 
 input CommentInput {
   content: String!
+}
+
+type Mutation {
+  addComment(comment: CommentInput!, postId: Int!): Comment!
+  upvotePost(postId: Int!): Post
+}
+
+type Post {
+  id: Int!
+  title: String!
+  votes: Int
+}
+
+type Query {
+  """著者"""
+  author(id: Int!, limit: Int! = 10, offset: Int! = 0): Author
 }
 
 type Subscription {
