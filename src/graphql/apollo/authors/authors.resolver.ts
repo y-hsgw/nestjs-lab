@@ -60,6 +60,7 @@ export class AuthorsResolver {
 
   @Subscription(() => Comment)
   commentAdded() {
-    return pubSub.asyncIterator('commentAdded');
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call
+    return pubSub.asyncIterableIterator('commentAdded');
   }
 }
