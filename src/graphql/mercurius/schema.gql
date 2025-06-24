@@ -1,0 +1,43 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Author {
+  firstName: String
+  id: Int!
+  lastName: String
+
+  """投稿リスト"""
+  posts: [Post!]!
+}
+
+type Comment {
+  content: String!
+  id: Int!
+  postId: Int!
+}
+
+input CommentInput {
+  content: String!
+}
+
+type Mutation {
+  addComment(comment: CommentInput!, postId: Int!): Comment!
+  upvotePost(postId: Int!): Post
+}
+
+"""投稿情報"""
+type Post {
+  id: Int!
+  title: String!
+  votes: Int
+}
+
+type Query {
+  """著者"""
+  author(id: Int!, limit: Int! = 10, offset: Int! = 0): Author
+}
+
+type Subscription {
+  commentAdded: Comment!
+}

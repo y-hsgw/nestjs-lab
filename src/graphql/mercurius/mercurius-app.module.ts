@@ -1,21 +1,23 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
 import { AuthorsModule } from '../common/authors/authors.module.js';
 import path from 'path';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: path.join(process.cwd(), 'src/graphql/apollo/schema.gql'),
+    GraphQLModule.forRoot<MercuriusDriverConfig>({
+      driver: MercuriusDriver,
+      autoSchemaFile: path.join(
+        process.cwd(),
+        'src/graphql/mercurius/schema.gql',
+      ),
       sortSchema: true,
-      installSubscriptionHandlers: true,
-      playground: true,
+      graphiql: true,
     }),
     AuthorsModule,
   ],
 })
-export class ApolloAppModule {}
+export class MercuriusAppModule {}
